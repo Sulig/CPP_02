@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:57:28 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/05 19:09:23 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:01:12 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Fixed
 		~Fixed();
 
 		Fixed			&operator=(Fixed const & rhs);
+
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
