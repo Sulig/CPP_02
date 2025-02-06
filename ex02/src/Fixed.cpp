@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:58:44 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/05 19:38:59 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/06 20:00:10 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,46 @@ Fixed	&Fixed::operator=(Fixed const & rhs)
 		this->_fixedPointValue = rhs.getRawBits();
 	return (*this);
 }
+
+// Arithmetic
+bool	Fixed::operator>(Fixed const & rhs) const	{ return (this->_fixedPointValue > rhs.getRawBits()); }
+bool	Fixed::operator<(Fixed const & rhs) const	{ return (this->_fixedPointValue < rhs.getRawBits()); }
+bool	Fixed::operator>=(Fixed const & rhs) const	{ return (this->_fixedPointValue >= rhs.getRawBits()); }
+bool	Fixed::operator<=(Fixed const & rhs) const	{ return (this->_fixedPointValue <= rhs.getRawBits()); }
+bool	Fixed::operator==(Fixed const & rhs) const	{ return (this->_fixedPointValue == rhs.getRawBits()); }
+bool	Fixed::operator!=(Fixed const & rhs) const	{ return (this->_fixedPointValue != rhs.getRawBits()); }
+
+// Operations
+Fixed	Fixed::operator+(Fixed const & rhs) const	{ return (Fixed(this->toFloat() + rhs.toFloat())); }
+Fixed	Fixed::operator-(Fixed const & rhs) const	{ return (Fixed(this->toFloat() - rhs.toFloat())); }
+Fixed	Fixed::operator*(Fixed const & rhs) const	{ return (Fixed(this->toFloat() * rhs.toFloat())); }
+Fixed	Fixed::operator/(Fixed const & rhs) const	{ return (Fixed(this->toFloat() / rhs.toFloat())); }
+
+// Increment & Decrement
+Fixed	&Fixed::operator++(void)	{ this->_fixedPointValue++; return (*this); }
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	operator++();
+	return (tmp);
+}
+Fixed	&Fixed::operator--(void)	{ this->_fixedPointValue--; return (*this); }
+Fixed	Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	operator--();
+	return (tmp);
+}
 /*------*/
+
+/* Min & Max */
+//											Condition ? True : False
+Fixed	&Fixed::min(Fixed & a, Fixed & b)	{ return (a < b ? a : b); }
+Fixed	&Fixed::max(Fixed & a, Fixed & b)	{ return (a > b ? a : b); }
+//														const_cast<type>(variable) -> cast away the constness of the variable
+Fixed	&Fixed::min(const Fixed & a, const Fixed & b)	{ return (a < b ? const_cast<Fixed&>(a) : const_cast<Fixed&>(b)); }
+Fixed	&Fixed::max(const Fixed & a, const Fixed & b)	{ return (a > b ? const_cast<Fixed&>(a) : const_cast<Fixed&>(b)); }
+/*-----*/
 
 /* Get & Set */
 int		Fixed::getRawBits(void) const		{	return (this->_fixedPointValue);	}

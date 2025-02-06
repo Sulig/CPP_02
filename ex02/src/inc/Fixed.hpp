@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:57:28 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/05 20:01:12 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:54:06 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,27 @@ class Fixed
 		~Fixed();
 
 		Fixed			&operator=(Fixed const & rhs);
+		bool			operator>(Fixed const & rhs) const;
+		bool			operator<(Fixed const & rhs) const;
+		bool			operator>=(Fixed const & rhs) const;
+		bool			operator<=(Fixed const & rhs) const;
+		bool			operator==(Fixed const & rhs) const;
+		bool			operator!=(Fixed const & rhs) const;
 
+		Fixed			operator+(Fixed const & rhs) const;
+		Fixed			operator-(Fixed const & rhs) const;
+		Fixed			operator*(Fixed const & rhs) const;
+		Fixed			operator/(Fixed const & rhs) const;
+
+		Fixed			&operator++(void);	// Prefix
+		Fixed			operator++(int);	// Postfix
+		Fixed			&operator--(void);	// Prefix
+		Fixed			operator--(int);	// Postfix
+
+		static Fixed	&min(Fixed & a, Fixed & b);
+		static Fixed	&min(const Fixed & a, const Fixed & b);
+		static Fixed	&max(Fixed & a, Fixed & b);
+		static Fixed	&max(const Fixed & a, const Fixed & b);
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
