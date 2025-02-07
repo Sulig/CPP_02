@@ -6,41 +6,30 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:58:44 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/07 17:03:27 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:11:18 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/Fixed.hpp"
 
 /* Constructors & Destructor */
-Fixed::Fixed(void) : _fixedPointValue(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-	return ;
-}
+Fixed::Fixed(void) : _fixedPointValue(0)	{	return ;	}
 Fixed::Fixed(int const value)
 {
-	std::cout << "Int constructor called" << std::endl;
 	this->_fixedPointValue = value << this->_fractionalBits;
 	return ;
 }
 Fixed::Fixed(float const value)
 {
-	std::cout << "Float constructor called" << std::endl;
 	this->_fixedPointValue = roundf(value * (1 << this->_fractionalBits));
 	return ;
 }
 Fixed::Fixed(Fixed const & src)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return ;
 }
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-	return ;
-}
+Fixed::~Fixed()	{	return ;	}
 /* ----- */
 
 /* Operator Overload */
@@ -52,7 +41,6 @@ std::ostream	&operator<<(std::ostream & o, Fixed const & rhs)
 
 Fixed	&Fixed::operator=(Fixed const & rhs)
 {
-	std::cout << "Assignation operator called" << std::endl;
 	if (this != &rhs)
 		this->_fixedPointValue = rhs.getRawBits();
 	return (*this);
